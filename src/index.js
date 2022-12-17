@@ -1,7 +1,8 @@
 const {PORT} = require('./config/serverConfig')
 const bodyParser = require("body-parser");
-
+const {City} = require("./models/index")
 const express = require("express");
+//const CityRepository = require('./repository/city-repository')
 require('dotenv').config()
 const setupAndStartServer = async () => {
     //create the express object
@@ -13,6 +14,9 @@ const setupAndStartServer = async () => {
     app.listen(PORT,()=>{
         console.log(`server started at ${PORT}`);
         // console.log(process);
+        console.log(City);
+        // const repo = new CityRepository();
+        // repo.createCity({name:'Mulki'})
     })
 }
 
