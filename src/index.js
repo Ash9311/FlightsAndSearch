@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const {City} = require("./models/index")
 const express = require("express");
 const ApiRoutes = require('./routes/index');
+const db = require('./models/index');
 //const CityRepository = require('./repository/city-repository')
 require('dotenv').config()
 const setupAndStartServer = async () => {
@@ -14,6 +15,9 @@ const setupAndStartServer = async () => {
     app.use('/api',ApiRoutes);
     app.listen(PORT,()=>{
         console.log(`server started at ${PORT}`);
+        if(process.env.SYNC_DB){
+            db.sequelize.sync({alert: true})
+        }
         // console.log(process);
         console.log(City);
         // const repo = new CityRepository();
