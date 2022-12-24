@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 200
-    }
+    },
   }, {
     sequelize,
     modelName: 'Airplane',
