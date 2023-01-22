@@ -50,7 +50,7 @@ class FlightRepository{
     }    
     async getFlight(flightId){
         try {
-            const flight = await Flights.findByPk(data);
+            const flight = await Flights.findByPk(flightId);
             return flight;
         } catch (error) {
             console.log("something went wrong in the repository layer");
@@ -70,6 +70,22 @@ class FlightRepository{
             throw {error};
         }
     }    
+    
+    async updateFlights(flightId,data) {
+    try {
+        await Flights.update(data, {
+            where:{
+                id:flightId
+            }
+        });
+        return true;
+    } catch (error) {
+        throw new AppError('RepositoryError','Cannot update Booking',
+        'There was some issue in updating the booking, try again',StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+ }
+
+ 
 
 }
 
